@@ -1,16 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CollectablePool : MonoBehaviour
 {
-    private int counter = 0;
+    private int collectableValue = 0;
+    private int desiredCollectableValue = 10;
+    TextMeshPro collectableCountText;
 
-    private void OnTriggerEnter(Collider other) {
-        counter += 1;
+    private void Start() 
+    {
+        collectableCountText = GetComponentInChildren<TextMeshPro>();
     }
 
-    private void Update() {
-        print(counter);
+    private void Update() 
+    {
+        collectableCountText.text = $"{collectableValue} / {desiredCollectableValue}";
     }
+
+    private void IsRea()
+    {
+
+    }
+
+    private void OnTriggerEnter(Collider other) 
+    {
+        collectableValue += 1;
+    }
+
 }
