@@ -6,19 +6,26 @@ public class Collectables : MonoBehaviour
 {
     private bool hasCollected = false;
     Rigidbody collectableRigidBoyd;
-    float collectableSpeed = 8f;
+    float collectableThrust = 5f;
 
-    bool isTouchingPlayer = false;
+    bool isSpeedUpArea = false;
+    bool hasGainForce = false;
+
+    [SerializeField] GameObject particleBlastEffect;
+
 
     private void Start() 
     {
-        collectableRigidBoyd = GetComponent<Rigidbody>();    
+        collectableRigidBoyd = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate() 
     {
-        if(isTouchingPlayer)
-            collectableRigidBoyd.velocity = Vector3.forward * collectableSpeed;
+        if(isSpeedUpArea && !hasGainForce)
+        {
+            collectableRigidBoyd.AddForce(Vector3.forward * collectableThrust, ForceMode.Impulse);
+            hasGainForce = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -27,25 +34,19 @@ public class Collectables : MonoBehaviour
         {
             hasCollected = true;
             other.gameObject.GetComponentInParent<CollectablePool>().AddOneCollectableToValueCount();
-
-            // TODO 
-            // Add particle effect.
-
-            Destroy(gameObject);
+            StartCoroutine(CollectedRoutine());
         }
-    }
-
-    private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Speed Up Area")
         {
-            isTouchingPlayer = true;
-            
+            isSpeedUpArea = true;
         }
     }
 
-    private void OnCollisionExit(Collision other) 
+    IEnumerator CollectedRoutine()
     {
-        isTouchingPlayer = false;
+        particleBlastEffect.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 
 }

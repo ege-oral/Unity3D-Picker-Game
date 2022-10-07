@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Stop Point
   - Collectable Pool Trigger
+  - Speed Up Area
   layers:
   - Default
   - TransparentFX

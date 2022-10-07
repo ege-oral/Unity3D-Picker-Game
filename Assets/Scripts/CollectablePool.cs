@@ -49,8 +49,9 @@ public class CollectablePool : MonoBehaviour
         yield return new WaitForSeconds(platformRiseDelay);
         risingPlatform.SetBool("IsNumberReached", true);
         collectableCountText.enabled = false;
-        
+
         yield return new WaitForSeconds(playerMoveDelay);
         playerMovement.IsReachedStopPoint = false;
+        collectableValueCount = 0;
     }
 }
