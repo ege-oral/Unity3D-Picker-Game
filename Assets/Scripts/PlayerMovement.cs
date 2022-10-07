@@ -12,11 +12,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float playerLeftRightSpeed = 10f;
 
     private bool startPlaying = false;
+    public bool StartPlaying{ get { return startPlaying; } set{ startPlaying = value; } }
+
     private bool isReachedStopPoint = false;
+    public bool IsReachedStopPoint{ get { return isReachedStopPoint; } set{ isReachedStopPoint = value; } }
 
-    float minXPosition = -2.5f;
-    float maxXPosition = 2.5f;
-
+    // float minXPosition = -2.5f;
+    // float maxXPosition = 2.5f;
 
 
     private void Start()
@@ -97,8 +99,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(other.gameObject.tag == "Stop Point")
         {
-            print("se");
             isReachedStopPoint = true;
+            other.gameObject.SetActive(false);
         }
     }
 }

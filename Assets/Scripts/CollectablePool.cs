@@ -5,8 +5,9 @@ using TMPro;
 
 public class CollectablePool : MonoBehaviour
 {
-    private int collectableValue = 0;
-    private int desiredCollectableValue = 10;
+    private int collectableValueCount = 0;
+
+    private int desiredCollectableValueCount = 10;
     TextMeshPro collectableCountText;
 
     private void Start() 
@@ -16,17 +17,27 @@ public class CollectablePool : MonoBehaviour
 
     private void Update() 
     {
-        collectableCountText.text = $"{collectableValue} / {desiredCollectableValue}";
+        collectableCountText.text = $"{collectableValueCount} / {desiredCollectableValueCount}";
+        HasDesiredNumberBeenReached();
     }
 
-    private void IsRea()
+    private void HasDesiredNumberBeenReached()
     {
-
+        if(collectableValueCount >= desiredCollectableValueCount)
+        {
+            print("Yey");
+        }
     }
 
-    private void OnTriggerEnter(Collider other) 
+    public void AddOneCollectableToValueCount()
     {
-        collectableValue += 1;
+        collectableValueCount += 1;
     }
+
+    // private void OnTriggerEnter(Collider other) 
+    // {
+    //     collectableValueCount += 1;
+
+    // }
 
 }
