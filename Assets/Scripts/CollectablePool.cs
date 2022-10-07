@@ -17,17 +17,31 @@ public class CollectablePool : MonoBehaviour
     [SerializeField] float platformRiseDelay = 2f;
     [SerializeField] float playerMoveDelay = 1f;
 
+    [SerializeField] GameObject continueCanvas;
+    [SerializeField] GameObject replayCanvas;
+
+    [SerializeField] GameObject allCollectables;
+
+    bool isCountDownStarted = false;
+
 
 
     private void Start() 
     {
         collectableCountText = GetComponentInChildren<TextMeshPro>();
+        
     }
 
     private void Update() 
     {
         collectableCountText.text = $"{collectableValueCount} / {desiredCollectableValueCount}";
-        HasDesiredNumberBeenReached();
+        if(collectableValueCount != 0 && !isCountDownStarted)
+        {
+            isCountDownStarted = true;
+            print('e');
+            StartCoroutine(HasDesiredNumberBeenReached());
+            
+        }
     }
 
     public void AddOneCollectableToValueCount()
@@ -35,12 +49,18 @@ public class CollectablePool : MonoBehaviour
         collectableValueCount += 1;
     }
 
-    private void HasDesiredNumberBeenReached()
+    IEnumerator HasDesiredNumberBeenReached()
     {
+        yield return new WaitForSeconds(2f);
         if(collectableValueCount >= desiredCollectableValueCount)
         {
-            StartCoroutine(RisePlatform());
+            continueCanvas.SetActive(true);
         }
+        else
+        {
+            replayCanvas.SetActive(true);
+        }
+            allCollectables.SetActive(false);
     }
 
 
@@ -54,4 +74,6 @@ public class CollectablePool : MonoBehaviour
         playerMovement.IsReachedStopPoint = false;
         collectableValueCount = 0;
     }
+
+
 }
