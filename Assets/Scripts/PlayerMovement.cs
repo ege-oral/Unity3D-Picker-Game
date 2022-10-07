@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    Touch touch;
     Camera mainCamera;
     Rigidbody playerRigidBoyd;
-    Touch touch;
 
     [SerializeField] float playerForwardSpeed = 10f;
     [SerializeField] float playerLeftRightSpeed = 10f;
@@ -16,9 +16,6 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isReachedStopPoint = false;
     public bool IsReachedStopPoint{ get { return isReachedStopPoint; } set{ isReachedStopPoint = value; } }
-
-    // float minXPosition = -2.5f;
-    // float maxXPosition = 2.5f;
 
 
     private void Start()
@@ -33,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
         {
             MovePlayerForward();    
             MovePlayerLeftRight();
-            KeepPlayerOnTrack();
         }
     }
 
@@ -45,20 +41,9 @@ public class PlayerMovement : MonoBehaviour
             if(touch.phase == TouchPhase.Moved)
             {
                 startPlaying = true;
-                
-                
-
-                // transform.position = Vector3.Lerp(transform.position, 
-                //                                   new Vector3(worldPosition.x * 2f, transform.position.y, transform.position.z), 
-                //                                   10f * Time.deltaTime);
-
-                
-            }
-            
-        }  
+            }  
+        }
     }
-
-    
 
     private void MovePlayerForward()
     {   
@@ -68,8 +53,6 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         playerRigidBoyd.velocity = Vector3.forward * playerForwardSpeed;
-        
-        //transform.position += transform.forward * Time.deltaTime * playerSpeed;
     }
 
     private void MovePlayerLeftRight()
@@ -79,21 +62,6 @@ public class PlayerMovement : MonoBehaviour
                                                 0f, 
                                                 playerRigidBoyd.velocity.z);
     }
-
-    private void KeepPlayerOnTrack()
-    {
-        // Vector3 clampXPosition = transform.position;
-        // clampXPosition.x = Mathf.Clamp(transform.position.x, minXPosition, maxXPosition);
-        // transform.position = clampXPosition;
-        // if(transform.position.x < -2.4f || transform.position.x > 2.4f)
-        //     playerRigidBoyd.velocity = new Vector3(0f, 0f, playerRigidBoyd.velocity.z);
-    }
-
-    // private void FixedUpdate() 
-    // {
-    //     playerRigidBoyd.velocity = Vector3.forward * playerSpeed;
-
-    // }
 
     private void OnTriggerEnter(Collider other) 
     {

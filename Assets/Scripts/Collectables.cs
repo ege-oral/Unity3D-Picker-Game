@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Collectables : MonoBehaviour
 {
-    private bool hasCollected = false;
     Rigidbody collectableRigidBoyd;
-    float collectableThrust = 5f;
-
-    bool isSpeedUpArea = false;
-    bool hasGainForce = false;
-
     [SerializeField] GameObject particleBlastEffect;
+
+    private float collectableThrust = 5f;
+    
+    private bool hasCollected = false;
+    private bool isSpeedUpArea = false;
+    private bool hasGainForce = false;
 
 
     private void Start() 
@@ -33,7 +33,7 @@ public class Collectables : MonoBehaviour
         if(other.gameObject.tag == "Collectable Pool Trigger" && !hasCollected)
         {
             hasCollected = true;
-            other.gameObject.GetComponentInParent<CollectablePool>().AddOneCollectableToValueCount();
+            other.gameObject.GetComponentInParent<CollectablePool>().AddOneToCollectableValueCount();
             StartCoroutine(CollectedRoutine());
         }
         if(other.gameObject.tag == "Speed Up Area")
