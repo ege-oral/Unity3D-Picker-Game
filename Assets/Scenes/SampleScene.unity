@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 507630017}
   - component: {fileID: 507630016}
   m_Layer: 5
-  m_Name: Level 1 Canvas
+  m_Name: Button Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -942,8 +942,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1284032832}
-  m_Father: {fileID: 571664807}
-  m_RootOrder: 4
+  m_Father: {fileID: 1331976013}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1139,9 +1139,9 @@ Transform:
   - {fileID: 1797568378}
   - {fileID: 1794735436}
   - {fileID: 312931294}
-  - {fileID: 507630015}
+  - {fileID: 1331976013}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &585608170
 GameObject:
@@ -1155,7 +1155,7 @@ GameObject:
   - component: {fileID: 585608173}
   - component: {fileID: 585608172}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Continue Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1199,7 +1199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Continue Text
+  m_text: Continue ?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1226,8 +1226,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2487,7 +2487,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1229502224
 GameObject:
@@ -2639,7 +2639,7 @@ GameObject:
   - component: {fileID: 1284032834}
   - component: {fileID: 1284032833}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Continue Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2660,10 +2660,10 @@ RectTransform:
   m_Father: {fileID: 507630015}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0.77025, y: 0.5}
-  m_AnchoredPosition: {x: 122, y: 0}
-  m_SizeDelta: {x: -448.7475, y: 361.0465}
+  m_AnchorMin: {x: 0.24822223, y: 0.5}
+  m_AnchorMax: {x: 0.7506943, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 361.0465}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1284032833
 MonoBehaviour:
@@ -2779,6 +2779,37 @@ Transform:
   - {fileID: 1073208129}
   m_Father: {fileID: 1797568378}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1331976012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1331976013}
+  m_Layer: 0
+  m_Name: Level 1 UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1331976013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331976012}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 507630015}
+  m_Father: {fileID: 571664807}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1434090931
 GameObject:
@@ -3716,6 +3747,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082312663309062889, guid: 4e89b8321298d4a4dae40d326a9ea42d,
+        type: 3}
+      propertyPath: playerForwardSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082312663309062889, guid: 4e89b8321298d4a4dae40d326a9ea42d,
+        type: 3}
+      propertyPath: playerLeftRightSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082312663309062891, guid: 4e89b8321298d4a4dae40d326a9ea42d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e89b8321298d4a4dae40d326a9ea42d, type: 3}
