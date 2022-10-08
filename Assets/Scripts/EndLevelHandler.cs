@@ -36,6 +36,7 @@ public class EndLevelHandler : MonoBehaviour
     public void ReplayLevel()
     {
         replayCanvas.SetActive(false);
+        // Incase of future scenes.
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
     }

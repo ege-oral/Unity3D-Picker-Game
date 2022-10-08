@@ -10,6 +10,7 @@ public class CollectablePool : MonoBehaviour
 
     private int collectableValueCount = 0;
     [SerializeField] int desiredCollectableValueCount = 10;
+    
     private bool startCountdown = false;
     private float waitTime = 4f;
 

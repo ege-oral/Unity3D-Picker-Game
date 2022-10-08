@@ -601,7 +601,6 @@ MonoBehaviour:
   risingBarrier: {fileID: 797003076401564309}
   collectablePool: {fileID: 797003076250033170}
   preventPassForCollectables: {fileID: 1091039545989632419}
-  playerMovement: {fileID: 0}
   continueCanvas: {fileID: 797003076465834713}
   replayCanvas: {fileID: 797003075634005070}
   platformRiseDelay: 1
@@ -2839,8 +2838,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1091039545989632419}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 70.4}
-  m_LocalScale: {x: 13.655, y: 13.069676, z: 1}
+  m_LocalPosition: {x: 0, y: -0.00000014156, z: 70.4}
+  m_LocalScale: {x: 37.726032, y: 32.342224, z: 1}
   m_Children: []
   m_Father: {fileID: 797003077209064128}
   m_RootOrder: 6

@@ -20,8 +20,8 @@ public class LevelManager : MonoBehaviour
 
     private void Awake() 
     {
-                
         PlayerPrefsHandler();
+
         int currentLevelNumber = PlayerPrefs.GetInt("Level_Number");
 
         foreach(Transform level in levels.transform)
@@ -33,10 +33,8 @@ public class LevelManager : MonoBehaviour
             levelsStartPositions.Add(level.gameObject);
             previousLevelCount += 1;
         }
-
         player.transform.position = levelsStartPositions[currentLevelNumber - 1].transform.position;
     }
-
 
     private void Update() 
     {
@@ -53,6 +51,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
+            // If there is no Level_Number key.
             if(!PlayerPrefs.HasKey("Level_Number"))
                 PlayerPrefs.SetInt("Level_Number", 1);
         }

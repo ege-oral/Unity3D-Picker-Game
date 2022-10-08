@@ -26,8 +26,8 @@ public class Collectables : MonoBehaviour
     {
         if(isSpeedUpArea && !hasGainForce)
         {
-            collectableRigidBoyd.AddForce(Vector3.forward * collectableThrust, ForceMode.Impulse);
             hasGainForce = true;
+            collectableRigidBoyd.AddForce(Vector3.forward * collectableThrust, ForceMode.Impulse);
         }
     }
 

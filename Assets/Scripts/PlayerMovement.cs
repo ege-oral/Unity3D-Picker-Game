@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     Touch touch;
     Camera mainCamera;
     Rigidbody playerRigidBoyd;
+    [SerializeField] GameObject dragToStartImage;
 
     [SerializeField] float playerForwardSpeed = 10f;
     [SerializeField] float playerLeftRightSpeed = 10f;
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         mainCamera = Camera.main;
         playerRigidBoyd = GetComponent<Rigidbody>();
+        dragToStartImage.SetActive(true);
     }
 
     private void FixedUpdate() 
@@ -43,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
             if(touch.phase == TouchPhase.Moved)
             {
                 startPlaying = true;
+                dragToStartImage.SetActive(false);
             }  
         }
     }
