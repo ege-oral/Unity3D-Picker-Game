@@ -10,6 +10,7 @@ public class EndLevelHandler : MonoBehaviour
     [SerializeField] Animator risingPlatform;
     [SerializeField] Animator risingBarrier;
     [SerializeField] GameObject collectablePool;
+    [SerializeField] GameObject preventPassForCollectables;
     [SerializeField] PlayerMovement playerMovement;
 
 
@@ -45,6 +46,7 @@ public class EndLevelHandler : MonoBehaviour
 
         yield return new WaitForSeconds(barrierRiseDelay);
         risingBarrier.SetBool("RaiseBarrier", true);
+        preventPassForCollectables.SetActive(false);
 
         yield return new WaitForSeconds(playerMoveDelay);
         playerMovement.IsReachedStopPoint = false;
