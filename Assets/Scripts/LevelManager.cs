@@ -5,7 +5,7 @@ using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] Transform[] levelStartPositions;
+    [SerializeField] GameObject[] levelStartPositions;
     [SerializeField] TextMeshProUGUI levelIndicator;
     [SerializeField] GameObject player;
 
@@ -13,8 +13,15 @@ public class LevelManager : MonoBehaviour
     {
         if(!PlayerPrefs.HasKey("Level_Number"))
             PlayerPrefs.SetInt("Level_Number" , 1);
+        
+        int Level_Number = PlayerPrefs.GetInt("Level_Number");
 
-        player.transform.position = levelStartPositions[0].position;
+        for(int i = 0; i < Level_Number - 1; i++)
+        {
+            levelStartPositions[i].SetActive(false);
+        }
+
+        player.transform.position = levelStartPositions[Level_Number - 1].transform.position;
     }
 
     private void Update() 

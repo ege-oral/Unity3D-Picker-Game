@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EndLevelHandler : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class EndLevelHandler : MonoBehaviour
     [SerializeField] GameObject replayCanvas;
 
     [SerializeField] float platformRiseDelay = 1f;
+    [SerializeField] float barrierRiseDelay = 1f;
     [SerializeField] float playerMoveDelay = 1f;
 
 
@@ -31,14 +33,18 @@ public class EndLevelHandler : MonoBehaviour
     {
         print("Replay");
         replayCanvas.SetActive(false);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
     }
 
     IEnumerator ContinueToNextLevelRoutine()
     {
         yield return new WaitForSeconds(platformRiseDelay);
         risingPlatform.SetBool("IsNumberReached", true);
-        risingBarrier.SetBool("RaiseBarrier", true);
         collectablePool.GetComponentInChildren<TextMeshPro>().enabled = false;
+
+        yield return new WaitForSeconds(barrierRiseDelay);
+        risingBarrier.SetBool("RaiseBarrier", true);
 
         yield return new WaitForSeconds(playerMoveDelay);
         playerMovement.IsReachedStopPoint = false;
