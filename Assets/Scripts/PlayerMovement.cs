@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float playerForwardSpeed = 10f;
     [SerializeField] float playerLeftRightSpeed = 10f;
 
+    private float playerLeftRightOffset = 1.7f;
+
     private bool startPlaying = false;
     public bool StartPlaying{ get { return startPlaying; } set{ startPlaying = value; } }
 
@@ -58,7 +60,9 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayerLeftRight()
     {
         Vector3 worldPosition = mainCamera.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10f));
-        playerRigidBoyd.velocity = new Vector3((worldPosition.x - transform.position.x) * playerLeftRightSpeed, 
+        print(worldPosition);
+
+        playerRigidBoyd.velocity = new Vector3(((worldPosition.x * playerLeftRightOffset) - transform.position.x ) * playerLeftRightSpeed, 
                                                 0f, 
                                                 playerRigidBoyd.velocity.z);
     }
