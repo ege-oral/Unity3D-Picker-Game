@@ -7,6 +7,7 @@ public class EndLevelHandler : MonoBehaviour
 {
 
     [SerializeField] Animator risingPlatform;
+    [SerializeField] Animator risingBarrier;
     [SerializeField] GameObject collectablePool;
     [SerializeField] PlayerMovement playerMovement;
 
@@ -36,6 +37,7 @@ public class EndLevelHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(platformRiseDelay);
         risingPlatform.SetBool("IsNumberReached", true);
+        risingBarrier.SetBool("RaiseBarrier", true);
         collectablePool.GetComponentInChildren<TextMeshPro>().enabled = false;
 
         yield return new WaitForSeconds(playerMoveDelay);

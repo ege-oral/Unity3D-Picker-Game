@@ -45,6 +45,7 @@ public class Collectables : MonoBehaviour
 
     IEnumerator CollectedRoutine()
     {
+        yield return new WaitForSeconds(1f);
         particleBlastEffect.SetActive(true);
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
