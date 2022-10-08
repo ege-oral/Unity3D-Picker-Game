@@ -60,8 +60,6 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayerLeftRight()
     {
         Vector3 worldPosition = mainCamera.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10f));
-        print(worldPosition);
-
         playerRigidBoyd.velocity = new Vector3(((worldPosition.x * playerLeftRightOffset) - transform.position.x ) * playerLeftRightSpeed, 
                                                 0f, 
                                                 playerRigidBoyd.velocity.z);

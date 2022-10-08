@@ -11,6 +11,7 @@ public class CollectablePool : MonoBehaviour
     private int collectableValueCount = 0;
     private int desiredCollectableValueCount = 10;
     private bool isCountDownStarted = false;
+    private float waitTime = 3f;
 
     [SerializeField] GameObject continueCanvas;
     [SerializeField] GameObject replayCanvas;
@@ -45,13 +46,15 @@ public class CollectablePool : MonoBehaviour
 
     IEnumerator HasDesiredNumberBeenReached()
     {
-        yield return new WaitForSeconds(2f);
+        // Waiting for other collectables to be counted.
+        yield return new WaitForSeconds(waitTime);
 
         if(collectableValueCount >= desiredCollectableValueCount)
             continueCanvas.SetActive(true);
         else
             replayCanvas.SetActive(true);
         
+        // At the end of the count, we destroy all remaining collectables.
         allCollectables.SetActive(false);
     }
 
