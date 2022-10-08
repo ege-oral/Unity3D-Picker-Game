@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
 public class EndLevelHandler : MonoBehaviour
 {
 
+    PlayerMovement playerMovement;
     [SerializeField] Animator risingPlatform;
     [SerializeField] Animator risingBarrier;
     [SerializeField] GameObject collectablePool;
     [SerializeField] GameObject preventPassForCollectables;
-    [SerializeField] PlayerMovement playerMovement;
 
 
     [SerializeField] GameObject continueCanvas;
@@ -21,10 +21,13 @@ public class EndLevelHandler : MonoBehaviour
     [SerializeField] float barrierRiseDelay = 1f;
     [SerializeField] float playerMoveDelay = 1f;
 
+    private void Start() 
+    {
+        playerMovement = FindObjectOfType<PlayerMovement>();
+    }
 
     public void ContinueToNextLevel()
     {
-        print("Continue");
         continueCanvas.SetActive(false);
         PlayerPrefs.SetInt("Level_Number", PlayerPrefs.GetInt("Level_Number") + 1);
         StartCoroutine(ContinueToNextLevelRoutine());
@@ -32,7 +35,6 @@ public class EndLevelHandler : MonoBehaviour
 
     public void ReplayLevel()
     {
-        print("Replay");
         replayCanvas.SetActive(false);
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);

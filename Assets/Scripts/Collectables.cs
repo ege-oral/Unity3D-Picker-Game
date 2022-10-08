@@ -5,6 +5,7 @@ using UnityEngine;
 public class Collectables : MonoBehaviour
 {
     Rigidbody collectableRigidBoyd;
+    AudioSource collectableSoundEffect;
     [SerializeField] GameObject particleBlastEffect;
 
     private float collectableThrust = 5f;
@@ -12,11 +13,13 @@ public class Collectables : MonoBehaviour
     private bool hasCollected = false;
     private bool isSpeedUpArea = false;
     private bool hasGainForce = false;
+    private bool hasCollide = false;
 
 
     private void Start() 
     {
         collectableRigidBoyd = GetComponent<Rigidbody>();
+        collectableSoundEffect = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate() 
@@ -28,11 +31,20 @@ public class Collectables : MonoBehaviour
         }
     }
 
+    IEnumerator CollectedRoutine()
+    {
+        yield return new WaitForSeconds(1f);
+        particleBlastEffect.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter(Collider other) 
     {
         if(other.gameObject.tag == "Collectable Pool Trigger" && !hasCollected)
         {
             hasCollected = true;
+            collectableSoundEffect.Play();
             collectableRigidBoyd.velocity = Vector3.zero;
             other.gameObject.GetComponentInParent<CollectablePool>().AddOneToCollectableValueCount();
             StartCoroutine(CollectedRoutine());
@@ -43,12 +55,14 @@ public class Collectables : MonoBehaviour
         }
     }
 
-    IEnumerator CollectedRoutine()
+    private void OnCollisionEnter(Collision other) 
     {
-        yield return new WaitForSeconds(1f);
-        particleBlastEffect.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        Destroy(gameObject);
+        if((other.gameObject.tag == "Player" || other.gameObject.tag == "Collectable") && !hasCollide)
+        {
+            hasCollide = true;
+            collectableSoundEffect.Play();
+        }
     }
+
 
 }

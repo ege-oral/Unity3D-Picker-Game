@@ -8,20 +8,25 @@ public class LevelManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI levelIndicator;
     [SerializeField] GameObject player;
 
+    // Important !
+    // If the current level greater than starting level.
+    // This variable can't do anything. Clear All PlayerPrefs.
+    [Tooltip("If the current level greater than starting level. This variable can't do anything. Clear All PlayerPrefs.")]
+    [SerializeField][Range(0, 10)] int startingLevel = 0;
+
     [SerializeField] GameObject levels;
     private List<GameObject> levelsStartPositions = new List<GameObject>();
     private int previousLevelCount = 0;
 
     private void Awake() 
     {
-        if(!PlayerPrefs.HasKey("Level_Number"))
-            PlayerPrefs.SetInt("Level_Number" , 1);
-        
-        int Level_Number = PlayerPrefs.GetInt("Level_Number");
+                
+        PlayerPrefsHandler();
+        int currentLevelNumber = PlayerPrefs.GetInt("Level_Number");
 
         foreach(Transform level in levels.transform)
         {
-            if(previousLevelCount < Level_Number - 1)
+            if(previousLevelCount < currentLevelNumber - 1)
             {
                 level.gameObject.SetActive(false);
             }
@@ -29,12 +34,27 @@ public class LevelManager : MonoBehaviour
             previousLevelCount += 1;
         }
 
-        player.transform.position = levelsStartPositions[Level_Number - 1].transform.position;
+        player.transform.position = levelsStartPositions[currentLevelNumber - 1].transform.position;
     }
 
 
     private void Update() 
     {
         levelIndicator.text = $"Level: {PlayerPrefs.GetInt("Level_Number").ToString()}";
+    }
+
+    private void PlayerPrefsHandler()
+    {
+        if(startingLevel != 0)
+        {
+            // If current level lower than starting level. Set current level to starting level.
+            if(PlayerPrefs.GetInt("Level_Number", 0) <= startingLevel)
+                PlayerPrefs.SetInt("Level_Number", startingLevel);
+        }
+        else
+        {
+            if(!PlayerPrefs.HasKey("Level_Number"))
+                PlayerPrefs.SetInt("Level_Number", 1);
+        }
     }
 }

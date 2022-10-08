@@ -9,13 +9,14 @@ public class CollectablePool : MonoBehaviour
     TextMeshPro collectableCountText;
 
     private int collectableValueCount = 0;
-    private int desiredCollectableValueCount = 10;
-    private bool isCountDownStarted = false;
-    private float waitTime = 3f;
+    [SerializeField] int desiredCollectableValueCount = 10;
+    private bool startCountdown = false;
+    private float waitTime = 4f;
 
     [SerializeField] GameObject continueCanvas;
     [SerializeField] GameObject replayCanvas;
     [SerializeField] GameObject allCollectables;
+    [SerializeField] GameObject startCountDownTrigger;
 
 
     private void Start() 
@@ -27,9 +28,9 @@ public class CollectablePool : MonoBehaviour
     {
         collectableCountText.text = $"{collectableValueCount} / {desiredCollectableValueCount}";
 
-        if(collectableValueCount > 0 && !isCountDownStarted)
+        if(startCountdown)
         {
-            isCountDownStarted = true;
+            startCountdown = false;
             StartCoroutine(HasDesiredNumberBeenReached());
         }
     }
@@ -59,7 +60,14 @@ public class CollectablePool : MonoBehaviour
     }
 
 
-    
+    private void OnTriggerEnter(Collider other) 
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            startCountdown = true;
+            startCountDownTrigger.SetActive(false);
+        }
+    }
 
 
 }
