@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class UI_Handler : MonoBehaviour
+public class EndLevelHandler : MonoBehaviour
 {
 
     [SerializeField] Animator risingPlatform;
     [SerializeField] GameObject collectablePool;
     [SerializeField] PlayerMovement playerMovement;
+
 
     [SerializeField] GameObject continueCanvas;
     [SerializeField] GameObject replayCanvas;
@@ -16,22 +17,12 @@ public class UI_Handler : MonoBehaviour
     [SerializeField] float platformRiseDelay = 1f;
     [SerializeField] float playerMoveDelay = 1f;
 
-    private void Start() 
-    {
-        // TODO add PlayerPrefs
-        /*
-        PlayerPrefs.SetInt("Level", 1);
-        if(PlayerPrefs.HasKey("Level"))
-            print("yes");
-        else
-            print("no");
-        */
-    }
 
     public void ContinueToNextLevel()
     {
         print("Continue");
         continueCanvas.SetActive(false);
+        PlayerPrefs.SetInt("Level_Number", PlayerPrefs.GetInt("Level_Number") + 1);
         StartCoroutine(ContinueToNextLevelRoutine());
     }
 

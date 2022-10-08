@@ -33,6 +33,7 @@ public class Collectables : MonoBehaviour
         if(other.gameObject.tag == "Collectable Pool Trigger" && !hasCollected)
         {
             hasCollected = true;
+            collectableRigidBoyd.velocity = Vector3.zero;
             other.gameObject.GetComponentInParent<CollectablePool>().AddOneToCollectableValueCount();
             StartCoroutine(CollectedRoutine());
         }
