@@ -39,6 +39,7 @@ public class LevelManager : MonoBehaviour
     private void Update() 
     {
         levelIndicator.text = $"Level: {PlayerPrefs.GetInt("Level_Number").ToString()}";
+        DisablePreviousLevelsInRuntime();
     }
 
     private void PlayerPrefsHandler()
@@ -54,6 +55,17 @@ public class LevelManager : MonoBehaviour
             // If there is no Level_Number key.
             if(!PlayerPrefs.HasKey("Level_Number"))
                 PlayerPrefs.SetInt("Level_Number", 1);
+        }
+    }
+
+    private void DisablePreviousLevelsInRuntime()
+    {
+        int currentLevel = PlayerPrefs.GetInt("Level_Number");
+        if(currentLevel - 2 > 0)
+        {
+            // This level is in different array position.
+            // Thats why we don't disable currentLevel by -2.
+            levelsStartPositions[currentLevel - 3].SetActive(false);
         }
     }
 }
