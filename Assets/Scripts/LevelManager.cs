@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject levels;
     private List<GameObject> levelsStartPositions = new List<GameObject>();
     private int previousLevelCount = 0;
+    [SerializeField] GameObject[] levelPrefabs;
 
     private void Awake() 
     {
@@ -40,21 +41,28 @@ public class LevelManager : MonoBehaviour
     {
         levelIndicator.text = $"Level: {PlayerPrefs.GetInt("Level_Number").ToString()}";
         DisablePreviousLevelsInRuntime();
+        AddLevelInRuntime();
+
     }
 
     private void PlayerPrefsHandler()
     {
-        if(startingLevel != 0)
-        {
-            // If current level lower than starting level. Set current level to starting level.
-            if(PlayerPrefs.GetInt("Level_Number", 0) <= startingLevel)
-                PlayerPrefs.SetInt("Level_Number", startingLevel);
-        }
+        if(PlayerPrefs.GetInt("Level_Number") > 10)
+                    PlayerPrefs.SetInt("Level_Number", 1);
         else
         {
-            // If there is no Level_Number key.
-            if(!PlayerPrefs.HasKey("Level_Number"))
-                PlayerPrefs.SetInt("Level_Number", 1);
+            if(startingLevel != 0)
+            {
+                // If current level lower than starting level. Set current level to starting level.
+                if(PlayerPrefs.GetInt("Level_Number", 0) <= startingLevel)
+                    PlayerPrefs.SetInt("Level_Number", startingLevel);
+            }
+            else
+            {
+                // If there is no Level_Number key.
+                if(!PlayerPrefs.HasKey("Level_Number"))
+                    PlayerPrefs.SetInt("Level_Number", 1);
+            }
         }
     }
 
@@ -66,6 +74,19 @@ public class LevelManager : MonoBehaviour
             // This level is in different array position.
             // Thats why we don't disable currentLevel by -2.
             levelsStartPositions[currentLevel - 3].SetActive(false);
+        }
+    }
+
+    private void AddLevelInRuntime()
+    {
+        int currentLevel = PlayerPrefs.GetInt("Level_Number");
+        if(levels.transform.childCount - currentLevel < 5)
+        {
+            GameObject newLevel = Instantiate(levelPrefabs[Random.Range(0, 10)], 
+                                              new Vector3(0, -0.1f, levels.transform.childCount * 78f),
+                                              Quaternion.identity);
+            newLevel.transform.parent = levels.transform;
+            levelsStartPositions.Add(newLevel); 
         }
     }
 }
