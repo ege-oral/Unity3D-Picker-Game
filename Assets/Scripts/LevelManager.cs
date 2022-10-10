@@ -104,10 +104,12 @@ public class LevelManager : MonoBehaviour
         if(currentLevelNumber <= 10)
         {
             levelIndicator.text = $"Level: {PlayerPrefs.GetInt("Level_Number").ToString()}";
+            levelIndicator.fontStyle = FontStyles.Bold;
         }
         else
         {
             levelIndicator.text = "INFINITE";
+            levelIndicator.fontStyle = FontStyles.Bold;
         }
     }
 }
