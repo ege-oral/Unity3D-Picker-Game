@@ -5,7 +5,6 @@ using TMPro;
 
 public class CollectablePool : MonoBehaviour
 {
-
     TextMeshPro collectableCountText;
 
     private int collectableValueCount = 0;
@@ -61,6 +60,7 @@ public class CollectablePool : MonoBehaviour
     }
 
 
+    // Check if player reaches start countDown trigger.
     private void OnTriggerEnter(Collider other) 
     {
         if(other.gameObject.tag == "Player")
@@ -69,6 +69,4 @@ public class CollectablePool : MonoBehaviour
             startCountDownTrigger.SetActive(false);
         }
     }
-
-
 }

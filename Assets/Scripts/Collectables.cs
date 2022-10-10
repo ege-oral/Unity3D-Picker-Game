@@ -6,7 +6,7 @@ public class Collectables : MonoBehaviour
 {
     Rigidbody collectableRigidBoyd;
     AudioSource collectableSoundEffect;
-    [SerializeField] GameObject particleBlastEffect;
+    [SerializeField] GameObject particlePopEffect;
 
     private float collectableThrust = 5f;
     
@@ -34,7 +34,7 @@ public class Collectables : MonoBehaviour
     IEnumerator CollectedRoutine()
     {
         yield return new WaitForSeconds(1f);
-        particleBlastEffect.SetActive(true);
+        particlePopEffect.SetActive(true);
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
@@ -49,6 +49,7 @@ public class Collectables : MonoBehaviour
             other.gameObject.GetComponentInParent<CollectablePool>().AddOneToCollectableValueCount();
             StartCoroutine(CollectedRoutine());
         }
+        // Gain Thrust speed.
         if(other.gameObject.tag == "Speed Up Area")
         {
             isSpeedUpArea = true;

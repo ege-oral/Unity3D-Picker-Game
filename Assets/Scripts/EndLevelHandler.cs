@@ -8,11 +8,10 @@ public class EndLevelHandler : MonoBehaviour
 {
 
     PlayerMovement playerMovement;
-    [SerializeField] Animator risingPlatform;
+    [SerializeField] GameObject risingPlatform;
     [SerializeField] Animator risingBarrier;
     [SerializeField] GameObject collectablePool;
-    [SerializeField] GameObject preventPassForCollectables;
-
+    [SerializeField] GameObject preventCollectablesToPass;
 
     [SerializeField] GameObject continueCanvas;
     [SerializeField] GameObject replayCanvas;
@@ -44,12 +43,13 @@ public class EndLevelHandler : MonoBehaviour
     IEnumerator ContinueToNextLevelRoutine()
     {
         yield return new WaitForSeconds(platformRiseDelay);
-        risingPlatform.SetBool("IsNumberReached", true);
+        risingPlatform.SetActive(true);
+        risingPlatform.GetComponent<Animator>().SetBool("IsNumberReached", true);
         collectablePool.GetComponentInChildren<TextMeshPro>().enabled = false;
 
         yield return new WaitForSeconds(barrierRiseDelay);
         risingBarrier.SetBool("RaiseBarrier", true);
-        preventPassForCollectables.SetActive(false);
+        preventCollectablesToPass.SetActive(false);
 
         yield return new WaitForSeconds(playerMoveDelay);
         playerMovement.IsReachedStopPoint = false;

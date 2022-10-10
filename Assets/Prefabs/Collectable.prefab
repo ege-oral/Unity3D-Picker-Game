@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623c67531da0d544fa2a2c0c3f692bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleBlastEffect: {fileID: 6432780542979464889}
+  particlePopEffect: {fileID: 6432780542979464889}
 --- !u!82 &2170116156441869894
 AudioSource:
   m_ObjectHideFlags: 0
