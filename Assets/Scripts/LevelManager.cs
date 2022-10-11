@@ -108,7 +108,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            levelIndicator.text = "INFINITE";
+            levelIndicator.text = "Level: INFINITE";
             levelIndicator.fontStyle = FontStyles.Bold;
         }
     }

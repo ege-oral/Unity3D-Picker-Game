@@ -6,7 +6,7 @@ public class Collectables : MonoBehaviour
 {
     Rigidbody collectableRigidBoyd;
     AudioSource collectableSoundEffect;
-    [SerializeField] GameObject particlePopEffect;
+    [SerializeField] GameObject particlePopVisualEffect;
 
     private float collectableThrust = 5f;
     
@@ -34,7 +34,7 @@ public class Collectables : MonoBehaviour
     IEnumerator CollectedRoutine()
     {
         yield return new WaitForSeconds(1f);
-        particlePopEffect.SetActive(true);
+        particlePopVisualEffect.SetActive(true);
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }

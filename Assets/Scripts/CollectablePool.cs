@@ -18,10 +18,15 @@ public class CollectablePool : MonoBehaviour
     [SerializeField] GameObject allCollectables;
     [SerializeField] GameObject startCountDownTrigger;
 
+    AudioSource levelAudio;
+    [SerializeField] AudioClip levelSuccessSoundEffect;
+    [SerializeField] AudioClip levelFailureSoundEffect;
+
 
     private void Start() 
     {
         collectableCountText = GetComponentInChildren<TextMeshPro>();
+        levelAudio = GetComponent<AudioSource>();
     }
 
     private void Update() 
@@ -51,9 +56,17 @@ public class CollectablePool : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
 
         if(collectableValueCount >= desiredCollectableValueCount)
+        {
+            levelAudio.clip = levelSuccessSoundEffect;
+            levelAudio.Play();
             continueCanvas.SetActive(true);
+        }
         else
+        {
+            levelAudio.clip = levelFailureSoundEffect;
+            levelAudio.Play();
             replayCanvas.SetActive(true);
+        }
         
         // At the end of the count, we destroy all remaining collectables.
         allCollectables.SetActive(false);

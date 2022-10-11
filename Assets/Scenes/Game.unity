@@ -1342,6 +1342,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1881709094}
     m_Modifications:
+    - target: {fileID: 1262309243613075481, guid: 90c3eb83cab4df743a43b715dc815872,
+        type: 3}
+      propertyPath: levelSuccessSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: c4b18dfc83c857740a844e3c31d785cf, type: 3}
     - target: {fileID: 1262309244565817032, guid: 90c3eb83cab4df743a43b715dc815872,
         type: 3}
       propertyPath: m_RootOrder
